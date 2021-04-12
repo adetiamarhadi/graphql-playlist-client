@@ -8,12 +8,26 @@ const getBooksQuery = gql`{
     }
 }`;
 
+function DisplayBooks() {
+    const q = useQuery(getBooksQuery);
+    if (q.loading) {
+        return (
+            <div>Loading Books...</div>
+        );
+    } else {
+        return q.data.books.map(book => {
+            return (
+                <li key={ book.id }>{ book.name }</li>
+            );
+        });
+    }
+}
+
 function BookList() {
-    useQuery(getBooksQuery);
     return (
         <div>
             <ul id="book-list">
-                <li>Book Name</li>
+                <DisplayBooks/>
             </ul>
         </div>
     );
