@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import AddBook from './components/AddBook';
 import BookList from './components/BookList';
 
 const client = new ApolloClient({
@@ -14,6 +15,7 @@ function App() {
       <div id="main">
         <h1>Reading List</h1>
         <BookList/>
+        <AddBook/>
       </div>
     </ApolloProvider>
   );
