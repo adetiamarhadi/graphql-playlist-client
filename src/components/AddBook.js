@@ -1,12 +1,5 @@
 import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
-
-const getAuthorsQuery = gql`{
-    authors {
-        id
-        name
-    }
-}`;
+import { getAuthorsQuery } from "../queries/queries";
 
 function DisplayAuthors() {
     const q = useQuery(getAuthorsQuery);

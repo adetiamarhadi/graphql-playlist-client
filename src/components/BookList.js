@@ -1,12 +1,5 @@
 import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
-
-const getBooksQuery = gql`{
-    books {
-        id
-        name
-    }
-}`;
+import { getBooksQuery } from "../queries/queries";
 
 function DisplayBooks() {
     const q = useQuery(getBooksQuery);
