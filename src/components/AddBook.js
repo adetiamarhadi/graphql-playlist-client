@@ -1,15 +1,6 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
-import { getAuthorsQuery } from "../queries/queries";
-
-// constructor(props) {
-//     super(props);
-//     this.state = {
-//         name: '',
-//         genre: '',
-//         authorId: ''
-//     };
-// }
+import { getAuthorsQuery, addBookMutation } from "../queries/queries";
 
 function DisplayAuthors() {
     const q = useQuery(getAuthorsQuery);
@@ -26,40 +17,32 @@ function DisplayAuthors() {
     }
 }
 
-// function submitForm(e) {
-//     e.preventDefault();
-//     console.log(this.state);
-// };
-
 function AddBook() {
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         name: '',
-    //         genre: '',
-    //         authorId: ''
-    //     };
-    // }
-    // const [name, setName] = useState('');
-    // const [genre, setGenre] = useState('');
-    // const [authorId, setAuthorId] = useState('');
-    const [data, setData] = useState({
+    const [book, setBook] = useState({
         name: '',
         genre: '',
         authorId: ''
     });
 
+    const [addBook] = useMutation(addBookMutation);
+
     const submitForm = e => {
         e.preventDefault();
-        console.log(data);
+        addBook({
+            variables: {
+                name: book.name,
+                genre: book.genre,
+                authorId: book.authorId
+            }
+        });
     };
 
     const handleChange = e => {
         const name = e.target.name;
         const value = e.target.value;
-        data[name] = value;
-        setData(data);
+        book[name] = value;
+        setBook(book);
     };
 
     return (
