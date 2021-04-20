@@ -4,14 +4,18 @@ import { getBookQuery } from "../queries/queries";
 function BookDetails(props) {
     if (!props.bookId) {
         return (
-            <div>No book selected...</div>
+            <div>
+                <div id="book-details">
+                <div>No book selected...</div>
+                </div>
+            </div>
         );
     } else {
         return (
             <div>
-                <ul id="book-details">
+                <div id="book-details">
                     <DisplayBookDetails bookId={ props.bookId }/>
-                </ul>
+                </div>
             </div>
         );
     }
